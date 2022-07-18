@@ -25,9 +25,6 @@ using InventorySystem.Items.ThrowableProjectiles;
 using Mirror.LiteNetLib4Mirror;
 using InventorySystem.Items.Firearms;
 using InventorySystem.Items.Usables.Scp330;
-using Kognity.DB.Account;
-using Kognity.DB.Account.Components;
-using Kognity.DB.Common.Cache;
 using MapEditorReborn.API.Features;
 using MapEditorReborn.API.Features.Objects;
 using PlayerStatsSystem;
@@ -1630,16 +1627,17 @@ namespace PlayhousePlugin
 			if(!ev.Player.GameObject.TryGetComponent<PlayhousePluginComponent>(out _))
 				ev.Player.GameObject.AddComponent<PlayhousePluginComponent>();
 
-			Task.Run(async () =>
-			{
-				var ctx = new AccountContext();
-				await ctx.Get(ev.Player.UserId);
-				using (var player = await ctx.Get(ev.Player.UserId))
-				{
-
-					player.GetComponent<EconomyComponent>().Deposit(1);
-				}
-			});
+			// KognityDB thing
+			// Task.Run(async () =>
+			// {
+			// 	var ctx = new AccountContext();
+			// 	await ctx.Get(ev.Player.UserId);
+			// 	using (var player = await ctx.Get(ev.Player.UserId))
+			// 	{
+			//
+			// 		player.GetComponent<EconomyComponent>().Deposit(1);
+			// 	}
+			// });
 
 			UtilityMethods.FindAndSetCustomBadge(ev.Player);
 			if (!JoinedPlayers.Contains(ev.Player.RawUserId))

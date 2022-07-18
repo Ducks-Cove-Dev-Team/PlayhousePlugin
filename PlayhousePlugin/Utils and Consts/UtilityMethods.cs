@@ -319,8 +319,8 @@ namespace PlayhousePlugin
 
 		public static void SpawnRagdoll(Vector3 pos, Quaternion rot, RoleType roleType, string deathCause, Player owner = null)
 		{
-			ReferenceHub target = owner?.ReferenceHub ?? ReferenceHub.HostHub;
-			Exiled.API.Features.Ragdoll.Spawn(new RagdollInfo(target, new CustomReasonDamageHandler(deathCause), pos, rot));
+			Player target = Player.Get(owner?.ReferenceHub ? owner?.ReferenceHub : ReferenceHub.HostHub);
+			Exiled.API.Features.Ragdoll.Spawn(target, new Exiled.API.Features.DamageHandlers.CustomDamageHandler(target, target, 42069f, DamageType.Custom));
 		}
 
 		/// <summary>

@@ -8,8 +8,6 @@ using CommandSystem;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
 using Exiled.API.Features.Items;
-using Kognity.DB.Account.Components;
-using Kognity.DB.Common.Cache;
 using MapEditorReborn.API.Features;
 using MEC;
 using Mirror;
@@ -350,7 +348,8 @@ namespace PlayhousePlugin.Commands
                     Log.Info(Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS"));
                     break;
                 
-                case "invtest":
+                // KognityDB stuff
+                /*case "invtest":
                     Task.Run(async () =>
                     {
                         var ctx = new AccountContext();
@@ -366,7 +365,7 @@ namespace PlayhousePlugin.Commands
                             });
                         }
                     });
-                    break;
+                    break;*/
                 
                 case "light":
                     var light = float.Parse(arguments.At(1));
@@ -427,15 +426,16 @@ namespace PlayhousePlugin.Commands
 
         public async Task AccountTest(Player p)
         {
-            var ctx = new AccountContext();
-            using (var player = await ctx.Get(p.UserId))
-            {
-                for (int i = 0; i < 15; i++)
-                {
-                    player.GetComponent<EconomyComponent>().Deposit(100);
-                    player.GetComponent<EconomyComponent>().Withdraw(100);
-                }
-            }
+            // KognityDB stuff
+            // var ctx = new AccountContext();
+            // using (var player = await ctx.Get(p.UserId))
+            // {
+            //     for (int i = 0; i < 15; i++)
+            //     {
+            //         player.GetComponent<EconomyComponent>().Deposit(100);
+            //         player.GetComponent<EconomyComponent>().Withdraw(100);
+            //     }
+            // }
         }
         
         public IEnumerator<float> shit(Player player)
