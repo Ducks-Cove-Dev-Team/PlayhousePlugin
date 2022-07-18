@@ -249,7 +249,7 @@ namespace PlayhousePlugin
 				// I am aware you can do it with  Server.FriendlyFire but I don't want the server to show up as a friendly fire server in the server list.
 				Server.FriendlyFire = true;
 				foreach (Player Ply in Player.List)
-					Ply.IsFriendlyFireEnabled = true;
+					Ply.SetFriendlyFire(new KeyValuePair<RoleType, float>(Ply.Role.Type, 1f));
 
 				UtilityMethods.CleanupRagdollsAndItems();
 				UtilityMethods.RewardPlayers();
